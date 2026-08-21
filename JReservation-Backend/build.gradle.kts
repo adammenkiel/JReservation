@@ -13,7 +13,19 @@ repositories {
 }
 
 dependencies {
+    //Rest etc
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    //ORM
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    //Not blank etc
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    //DB
+    runtimeOnly("org.postgresql:postgresql")
+
+    //Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
