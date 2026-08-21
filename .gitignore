@@ -1,0 +1,55 @@
+### JReservation-Backend ###
+
+JReservation-Backend/.gradle/
+JReservation-Backend/build/
+
+# Gradle wrapper
+!JReservation-Backend/gradle/wrapper/gradle-wrapper.jar
+
+# Allow build directories inside source
+!JReservation-Backend/**/src/main/**/build/
+!JReservation-Backend/**/src/test/**/build/
+
+# Kotlin
+JReservation-Backend/.kotlin/
+
+### IntelliJ IDEA ###
+JReservation-Backend/.idea/modules.xml
+JReservation-Backend/.idea/jarRepositories.xml
+JReservation-Backend/.idea/compiler.xml
+JReservation-Backend/.idea/libraries/
+JReservation-Backend/*.iws
+JReservation-Backend/*.iml
+JReservation-Backend/*.ipr
+JReservation-Backend/out/
+
+# Allow out directories inside source
+!JReservation-Backend/**/src/main/**/out/
+!JReservation-Backend/**/src/test/**/out/
+
+### Eclipse ###
+JReservation-Backend/.apt_generated/
+JReservation-Backend/.classpath
+JReservation-Backend/.factorypath
+JReservation-Backend/.project
+JReservation-Backend/.settings/
+JReservation-Backend/.springBeans
+JReservation-Backend/.sts4-cache
+JReservation-Backend/bin/
+
+# Allow bin directories inside source
+!JReservation-Backend/**/src/main/**/bin/
+!JReservation-Backend/**/src/test/**/bin/
+
+### NetBeans ###
+JReservation-Backend/nbproject/private/
+JReservation-Backend/nbbuild/
+JReservation-Backend/dist/
+JReservation-Backend/nbdist/
+JReservation-Backend/.nb-gradle/
+
+### VS Code ###
+JReservation-Backend/.vscode/
+
+### Mac OS ###
+.DS_Store
