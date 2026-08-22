@@ -5,7 +5,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,18 +17,32 @@ import java.util.UUID;
 )
 public class ProductInfo {
     @Id
-    @NotBlank
+    @NotNull
     UUID productId;
 
     @NotBlank
+    String name;
+
+    @NotBlank
+    String shortDescription;
+
+    @NotBlank
+    String description;
+
+    @NotNull
     int cost;
 
-    @NotBlank
+    @NotNull
     int amount;
 
-    @NotBlank
-    Date starts;
+    @NotNull
+    LocalDateTime starts;
 
-    @NotBlank
-    Date ends;
+    @NotNull
+    LocalDateTime ends;
+
+    public boolean isAvailable() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        return starts.isAfter(dateTime) && ends.isBefore(dateTime);
+    }
 }
