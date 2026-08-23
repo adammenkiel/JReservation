@@ -13,6 +13,6 @@ import java.util.UUID;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductInfo, UUID> {
     Optional<ProductInfo> getProductByProductId(UUID id);
-    @Query("SELECT product FROM ProductInfo product")
+    @Query("SELECT products FROM ProductInfo products")
     List<ProductInfo> getProductsPage(Pageable pageable);
 }

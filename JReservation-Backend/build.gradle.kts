@@ -27,6 +27,10 @@ dependencies {
 
     //Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    //LOMBOK
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
 }
 
 tasks.test {
