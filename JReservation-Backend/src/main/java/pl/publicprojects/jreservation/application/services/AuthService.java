@@ -1,0 +1,59 @@
+package pl.publicprojects.jreservation.application.services;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import pl.publicprojects.jreservation.domain.authentication.User;
+import pl.publicprojects.jreservation.domain.exception.AuthException;
+import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
+
+@Component
+public class AuthService {
+    final UserRepository userRepository;
+    final AuthenticationManager authenticationManager;
+    final PasswordEncoder passwordEncoder;
+
+    public AuthService(
+            UserRepository userRepository,
+            AuthenticationManager authenticationManager,
+            PasswordEncoder passwordEncoder
+    ) {
+        this.userRepository = userRepository;
+        this.authenticationManager = authenticationManager;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    private boolean isUserExists(String name, String email) {
+        if(this.userRepository.getUserByUsername(name).isPresent())
+            return true;
+        return this.userRepository.getUserByUsername(email).isPresent();
+    }
+
+    public void registerUser(String name, String email, String password) {
+        if(this.isUserExists(name, email)) {
+            throw new AuthException(
+                    "User of this email or username is already registered!" +
+                            " Please change email or username."
+            );
+        }
+        this.userRepository.save(
+                new User(
+                        name,
+                        email,
+                        this.passwordEncoder.encode(password)
+                )
+        );
+    }
+
+    public String loginUser(String name, String password) {
+        Authentication authenticate = this.authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(name, password));
+        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        User user = (User) authenticate.getPrincipal();
+
+        return "";
+    }
+}

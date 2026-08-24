@@ -1,11 +1,10 @@
-package pl.publicprojects.jreservation.api;
+package pl.publicprojects.jreservation.infrastructure.rest.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 import pl.publicprojects.jreservation.infrastructure.rest.requests.LoginUserRequest;
 import pl.publicprojects.jreservation.infrastructure.rest.requests.RegisterUserRequest;
-import pl.publicprojects.jreservation.infrastructure.services.AuthService;
+import pl.publicprojects.jreservation.application.services.AuthService;
 
 @RestController
 @RequestMapping("/auth")
@@ -19,7 +18,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginUserRequest request) {
-        this.authService.loginUser(
+        String token = this.authService.loginUser(
                 request.getUsername(),
                 request.getPassword()
         );

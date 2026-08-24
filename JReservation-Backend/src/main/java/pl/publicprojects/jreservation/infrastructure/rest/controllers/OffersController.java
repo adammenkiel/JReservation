@@ -1,15 +1,9 @@
-package pl.publicprojects.jreservation.api;
+package pl.publicprojects.jreservation.infrastructure.rest.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.publicprojects.jreservation.domain.reservation.ProductInfo;
 import pl.publicprojects.jreservation.infrastructure.repositories.ProductRepository;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/app")

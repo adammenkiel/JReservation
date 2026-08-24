@@ -1,4 +1,4 @@
-package pl.publicprojects.jreservation.infrastructure.services;
+package pl.publicprojects.jreservation.application.services;
 
 import org.springframework.stereotype.Component;
 import pl.publicprojects.jreservation.infrastructure.repositories.ProductRepository;
