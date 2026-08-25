@@ -14,18 +14,22 @@ import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository
 
 @Component
 public class AuthService {
+
     final UserRepository userRepository;
     final AuthenticationManager authenticationManager;
     final PasswordEncoder passwordEncoder;
+    final JwtHelper jwtHelper;
 
     public AuthService(
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            JwtHelper jwtHelper
     ) {
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
+        this.jwtHelper = jwtHelper;
     }
 
     private boolean isUserExists(String name, String email) {
@@ -58,7 +62,6 @@ public class AuthService {
                 .setAuthentication(authenticate);
 
         User user = (User) authenticate.getPrincipal();
-        JwtHelper helper = new JwtHelper();
-        return helper.generateJwtCookieFromUser(user); // static?
+        return this.jwtHelper.generateJwtCookieFromUser(user);
     }
 }
