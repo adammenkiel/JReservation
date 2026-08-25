@@ -1,5 +1,6 @@
 package pl.publicprojects.jreservation.application.services;
 
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -8,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.publicprojects.jreservation.domain.authentication.User;
 import pl.publicprojects.jreservation.domain.exception.AuthException;
+import pl.publicprojects.jreservation.domain.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 
 @Component
@@ -48,12 +50,15 @@ public class AuthService {
         );
     }
 
-    public String loginUser(String name, String password) {
+    public ResponseCookie loginUser(String name, String password) {
         Authentication authenticate = this.authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(name, password));
-        SecurityContextHolder.getContext().setAuthentication(authenticate);
-        User user = (User) authenticate.getPrincipal();
 
-        return "";
+        SecurityContextHolder.getContext()
+                .setAuthentication(authenticate);
+
+        User user = (User) authenticate.getPrincipal();
+        JwtHelper helper = new JwtHelper();
+        return helper.generateJwtCookieFromUser(user); // static?
     }
 }

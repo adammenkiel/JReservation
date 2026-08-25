@@ -7,10 +7,12 @@ import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
+@Setter
 @Getter
 @Entity
 @Table(
@@ -23,16 +25,16 @@ import java.util.UUID;
 public class User {
     @Id
     @NotNull
-    private final UUID uuid;
+    private UUID uuid;
 
     @NotBlank
-    private final String username;
+    private String username;
 
     @NotBlank
-    private final String email;
+    private String email;
 
     @NotBlank
-    private final String password;
+    private String password;
 
     public User(String username, String email, String password) {
         this.uuid = UUID.nameUUIDFromBytes(username.getBytes(StandardCharsets.UTF_8));

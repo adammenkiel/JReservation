@@ -1,5 +1,7 @@
 package pl.publicprojects.jreservation.infrastructure.rest.controllers;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.publicprojects.jreservation.infrastructure.rest.requests.LoginUserRequest;
@@ -18,11 +20,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginUserRequest request) {
-        String token = this.authService.loginUser(
+        ResponseCookie tokenCookie = this.authService.loginUser(
                 request.getUsername(),
                 request.getPassword()
         );
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, tokenCookie.toString())
+                .body("OK");
     }
 
     @PostMapping("/register")
