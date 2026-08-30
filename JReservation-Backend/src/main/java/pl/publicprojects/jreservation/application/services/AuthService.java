@@ -7,18 +7,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.publicprojects.jreservation.domain.authentication.User;
 import pl.publicprojects.jreservation.domain.exception.AuthException;
 import pl.publicprojects.jreservation.domain.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 
-@Component
+@Service
 public class AuthService {
 
-    final UserRepository userRepository;
-    final AuthenticationManager authenticationManager;
-    final PasswordEncoder passwordEncoder;
-    final JwtHelper jwtHelper;
+    private final UserRepository userRepository;
+    private final AuthenticationManager authenticationManager;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtHelper jwtHelper;
 
     public AuthService(
             UserRepository userRepository,
@@ -26,6 +27,7 @@ public class AuthService {
             PasswordEncoder passwordEncoder,
             JwtHelper jwtHelper
     ) {
+
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
