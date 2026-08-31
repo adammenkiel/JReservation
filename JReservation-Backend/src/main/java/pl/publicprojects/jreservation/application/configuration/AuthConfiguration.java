@@ -11,8 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.rest.filters.AuthFilter;
+
+import java.util.List;
 
 @Configuration
 @EnableMethodSecurity
@@ -33,6 +38,22 @@ public class AuthConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+
+    //TODO: Put allowed origins into config
+    @Bean
+    public CorsConfigurationSource configureCors() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
+        corsConfiguration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
+    }
+
     //TODO: Update it
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,6 +63,10 @@ public class AuthConfiguration {
                                 "/auth/login", "/auth/register"
                         ).permitAll().anyRequest().authenticated()
                 )
+                .cors(
+                        corsConfigurer -> corsConfigurer.configurationSource(
+                                this.configureCors()
+                        ))
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
