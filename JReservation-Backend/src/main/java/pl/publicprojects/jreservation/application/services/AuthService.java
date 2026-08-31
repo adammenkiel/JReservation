@@ -35,9 +35,8 @@ public class AuthService {
     }
 
     private boolean isUserExists(String name, String email) {
-        if(this.userRepository.getUserByUsername(name).isPresent())
-            return true;
-        return this.userRepository.getUserByUsername(email).isPresent();
+        return this.userRepository.getUserByUsername(name).isPresent() ||
+                this.userRepository.getUserByUsername(email).isPresent();
     }
 
     public void registerUser(String name, String email, String password) {

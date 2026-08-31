@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/configuration/AuthConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/configuration/AuthConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/authentication/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/authentication/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/helper/JwtHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/helper/JwtHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
