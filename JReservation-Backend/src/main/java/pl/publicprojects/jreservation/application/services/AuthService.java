@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.publicprojects.jreservation.domain.authentication.User;
 import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
-import pl.publicprojects.jreservation.domain.helper.JwtHelper;
+import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 
 @Service
@@ -35,7 +35,7 @@ public class AuthService {
 
     private boolean isUserExists(String name, String email) {
         return this.userRepository.getUserByUsername(name).isPresent() ||
-                this.userRepository.getUserByUsername(email).isPresent();
+                this.userRepository.getUserByEmail(email).isPresent();
     }
 
     public void registerUser(String name, String email, String password) {

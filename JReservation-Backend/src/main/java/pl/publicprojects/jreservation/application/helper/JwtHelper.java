@@ -1,4 +1,4 @@
-package pl.publicprojects.jreservation.domain.helper;
+package pl.publicprojects.jreservation.application.helper;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -42,5 +42,23 @@ public class JwtHelper {
                 .sameSite("Lax")
                 .secure(false)
                 .build();
+    }
+
+    public boolean isValid(String tokenString) {
+        try {
+            this.getTokenContent(tokenString);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getTokenContent(String tokenString) {
+        return Jwts.parserBuilder()
+                .setSigningKey(this.key)
+                .build()
+                .parseClaimsJws(tokenString)
+                .getBody()
+                .getSubject();
     }
 }
