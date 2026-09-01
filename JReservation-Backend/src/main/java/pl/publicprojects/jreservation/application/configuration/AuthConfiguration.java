@@ -57,8 +57,7 @@ public class AuthConfiguration {
     //TODO: Update it
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.addFilterBefore(this.authFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeHttpRequests(
+        return http.authorizeHttpRequests(
                         auth -> auth.requestMatchers(
                                 "/auth/login", "/auth/register"
                         ).permitAll().anyRequest().authenticated()
@@ -68,6 +67,7 @@ public class AuthConfiguration {
                                 this.configureCors()
                         ))
                 .csrf(AbstractHttpConfigurer::disable)
+                .addFilterBefore(this.authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }

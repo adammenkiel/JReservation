@@ -18,6 +18,7 @@ import pl.publicprojects.jreservation.domain.authentication.User;
 import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -47,24 +48,39 @@ public class AuthFilter extends OncePerRequestFilter {
                 .findFirst();
 
         if(optCookie.isEmpty()) {
+            response.sendError(403, "Authentication is required!");
             filterChain.doFilter(request, response);
-            throw new AuthException("Authentication is required!");
+            return;
         }
 
         String tokenString = optCookie.get().getValue();
         if(!this.jwtHelper.isValid(tokenString)) {
+            response.sendError(403, "Authentication token is incorrect!");
             filterChain.doFilter(request, response);
-            throw new AuthException("Authentication token is incorrect!");
+            return;
         }
 
         String username = this.jwtHelper.getTokenContent(tokenString);
         User user = (User) userService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 user.getUsername(),
-                null
+                null,
+                new ArrayList<>()
         );
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(
+            @NotNull HttpServletRequest request
+    ) throws ServletException {
+        String[] endpoints = {"/auth/login", "/auth/register"};
+        for(String endpoint : endpoints) {
+            if(request.getServletPath().equals(endpoint))
+                return true;
+        }
+        return false;
     }
 }
