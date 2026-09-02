@@ -16,6 +16,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.rest.filters.AuthFilter;
+import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
+import pl.publicprojects.jreservation.infrastructure.time.TimeManagerImpl;
 
 import java.util.List;
 
@@ -37,7 +39,6 @@ public class AuthConfiguration {
     public PasswordEncoder createPasswordEncoderBean() {
         return new BCryptPasswordEncoder();
     }
-
 
     //TODO: Put allowed origins into config
     @Bean

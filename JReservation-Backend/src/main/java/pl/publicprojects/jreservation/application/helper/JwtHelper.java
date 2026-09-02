@@ -7,16 +7,23 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import pl.publicprojects.jreservation.domain.authentication.User;
+import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.time.Instant;
 import java.util.Date;
 
 @Component
 public class JwtHelper {
 
     private Key key;
+    private final TimeManager timeManager;
+
+    public JwtHelper(
+            TimeManager timeManager
+    ) {
+        this.timeManager = timeManager;
+    }
 
     @PostConstruct
     public void init() {
@@ -28,9 +35,9 @@ public class JwtHelper {
     public ResponseCookie generateJwtCookieFromUser(User user) {
         String tokenString = Jwts.builder()
                 .setSubject(user.getUsername())
-                .setIssuedAt(Date.from(Instant.now()))
+                .setIssuedAt(Date.from(this.timeManager.now()))
                 .setExpiration(
-                        Date.from(Instant.now().plusSeconds(3600))
+                        Date.from(this.timeManager.now().plusSeconds(3600))
                 )
                 .signWith(this.key, SignatureAlgorithm.HS256)
                 .compact();
