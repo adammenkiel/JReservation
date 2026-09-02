@@ -43,6 +43,11 @@ public class AuthFilter extends OncePerRequestFilter {
             @NotNull HttpServletResponse response,
             @NotNull FilterChain filterChain
     ) throws ServletException, IOException, UsernameNotFoundException {
+        if(request.getCookies() == null) {
+            response.sendError(403, "Authentication is required!");
+            filterChain.doFilter(request, response);
+            return;
+        }
         Optional<Cookie> optCookie = Arrays.stream(request.getCookies())
                 .filter(cookie -> cookie.getName().equals("token"))
                 .findFirst();
