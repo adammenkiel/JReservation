@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import pl.publicprojects.jreservation.domain.user.User;
+import pl.publicprojects.jreservation.infrastructure.config.ConfigProperties;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
 import java.nio.charset.StandardCharsets;
@@ -18,33 +19,38 @@ public class JwtHelper {
 
     private Key key;
     private final TimeManager timeManager;
+    private final ConfigProperties properties;
 
     public JwtHelper(
-            TimeManager timeManager
+            TimeManager timeManager,
+            ConfigProperties properties
     ) {
         this.timeManager = timeManager;
+        this.properties = properties;
     }
 
     @PostConstruct
     public void init() {
-        this.key = Keys.hmacShaKeyFor("Temporary keyTemporary keyTemporary keyTemporary keyTemporary keyTemporary keyTemporary keyTemporary keyTemporary key"
-                .getBytes(StandardCharsets.UTF_8)); // to change
+        this.key = Keys.hmacShaKeyFor(this.properties.getJwtSecret()
+                .getBytes(StandardCharsets.UTF_8));
     }
 
-    //TODO: Add some properties into configuration
     public ResponseCookie generateJwtCookieFromUser(User user) {
         String tokenString = Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(Date.from(this.timeManager.now()))
                 .setExpiration(
-                        Date.from(this.timeManager.now().plusSeconds(3600))
+                        Date.from(
+                                this.timeManager.now()
+                                        .plusSeconds(this.properties.getJwtExpirationSeconds())
+                        )
                 )
                 .signWith(this.key, SignatureAlgorithm.HS256)
                 .compact();
 
         return ResponseCookie.from("token", tokenString)
                 .path("/")
-                .maxAge(3600)
+                .maxAge(this.properties.getJwtExpirationSeconds())
                 .httpOnly(true)
                 .sameSite("Lax")
                 .secure(false)
