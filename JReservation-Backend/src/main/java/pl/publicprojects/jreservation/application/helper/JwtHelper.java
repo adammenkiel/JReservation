@@ -6,7 +6,7 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
-import pl.publicprojects.jreservation.domain.authentication.User;
+import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
 import java.nio.charset.StandardCharsets;

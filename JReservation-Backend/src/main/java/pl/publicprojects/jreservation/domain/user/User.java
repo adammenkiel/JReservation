@@ -1,9 +1,6 @@
-package pl.publicprojects.jreservation.domain.authentication;
+package pl.publicprojects.jreservation.domain.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -11,8 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.publicprojects.jreservation.domain.payment.Wallet;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -42,11 +41,22 @@ public class User implements UserDetails {
     @NotBlank
     private String password;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Wallet> wallets = new ArrayList<>();
+
     public User(String username, String email, String password) {
         this.uuid = UUID.nameUUIDFromBytes(username.getBytes(StandardCharsets.UTF_8));
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String username, String email, String password, List<Wallet> wallets) {
+        this.uuid = UUID.nameUUIDFromBytes(username.getBytes(StandardCharsets.UTF_8));
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.wallets = wallets;
     }
 
     @Override

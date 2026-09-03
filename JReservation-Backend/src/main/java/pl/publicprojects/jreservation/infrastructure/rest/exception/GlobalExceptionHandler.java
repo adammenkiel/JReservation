@@ -2,6 +2,7 @@ package pl.publicprojects.jreservation.infrastructure.rest.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.publicprojects.jreservation.domain.exception.AppException;
@@ -14,8 +15,14 @@ public class GlobalExceptionHandler {
                 .body(appException.getMessage());
     }
 
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    public ResponseEntity<?> handleAuthError(InternalAuthenticationServiceException authException) {
+        return ResponseEntity.status(401)
+                .body(authException.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleUnknownError() {
+    public ResponseEntity<?> handleUnknownError(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Something went wrong!");
     }

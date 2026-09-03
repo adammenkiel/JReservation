@@ -1,10 +1,9 @@
 package pl.publicprojects.jreservation.tests.application;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseCookie;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
-import pl.publicprojects.jreservation.domain.authentication.User;
+import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.helper.FakeTimeManager;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManagerImpl;

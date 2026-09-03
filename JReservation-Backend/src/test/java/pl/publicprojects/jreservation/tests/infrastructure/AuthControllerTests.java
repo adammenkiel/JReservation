@@ -38,7 +38,7 @@ public class AuthControllerTests {
             bodyMap,
             String.class
         ).getHeaders().get("set-cookie");
-        
+
         //Assert
         Assertions.assertNotNull(responseCookies);
         Assertions.assertFalse(responseCookies.isEmpty());

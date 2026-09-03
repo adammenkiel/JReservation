@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.publicprojects.jreservation.domain.authentication.User;
+import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;

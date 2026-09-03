@@ -14,8 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.application.services.UserService;
-import pl.publicprojects.jreservation.domain.authentication.User;
-import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
+import pl.publicprojects.jreservation.domain.user.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
