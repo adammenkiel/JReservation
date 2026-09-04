@@ -13,8 +13,10 @@ import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 import pl.publicprojects.jreservation.infrastructure.repositories.WalletRepository;
+import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Service
 public class AuthService {
@@ -24,13 +26,15 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final JwtHelper jwtHelper;
+    private final TimeManager timeManager;
 
     public AuthService(
             UserRepository userRepository,
             WalletRepository walletRepository,
             AuthenticationManager authenticationManager,
             PasswordEncoder passwordEncoder,
-            JwtHelper jwtHelper
+            JwtHelper jwtHelper,
+            TimeManager timeManager
     ) {
 
         this.userRepository = userRepository;
@@ -38,6 +42,7 @@ public class AuthService {
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
         this.jwtHelper = jwtHelper;
+        this.timeManager = timeManager;
     }
 
     private boolean isUserExists(String name, String email) {
@@ -55,7 +60,8 @@ public class AuthService {
         User user = new User(
                 name,
                 email,
-                this.passwordEncoder.encode(password)
+                this.passwordEncoder.encode(password),
+                Date.from(this.timeManager.now())
         );
 
         Wallet wallet = new Wallet(
@@ -63,6 +69,7 @@ public class AuthService {
                 BigDecimal.ZERO,
                 "PLN"
         );
+        
         this.userRepository.save(user);
         this.walletRepository.save(wallet);
     }

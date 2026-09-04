@@ -40,11 +40,11 @@ public class AuthConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    //TODO: Put allowed origins into config
     @Bean
     public CorsConfigurationSource configureCors() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
+        //TODO: It should be added into configuration
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
         corsConfiguration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
@@ -55,7 +55,6 @@ public class AuthConfiguration {
         return source;
     }
 
-    //TODO: Update it
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(
