@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 import pl.publicprojects.jreservation.domain.user.User;
 
 import java.math.BigDecimal;
@@ -19,6 +20,8 @@ import java.util.UUID;
 @Entity
 public class Wallet {
     @Id
+    @GeneratedValue
+    @UuidGenerator(style = UuidGenerator.Style.TIME)
     UUID walletUuid;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,4 +35,14 @@ public class Wallet {
 
     @NotBlank
     String currency;
+
+    public Wallet() {}
+
+    public Wallet(User user, BigDecimal balance, String currency) {
+
+        this.user = user;
+        this.balance = balance;
+        this.currency = currency;
+
+    }
 }

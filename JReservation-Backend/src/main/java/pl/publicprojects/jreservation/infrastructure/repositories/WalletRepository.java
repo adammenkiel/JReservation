@@ -1,14 +1,13 @@
 package pl.publicprojects.jreservation.infrastructure.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import pl.publicprojects.jreservation.domain.payment.Wallet;
 import pl.publicprojects.jreservation.domain.user.User;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> getUserByUsername(String name);
-    Optional<User> getUserByEmail(String email);
+public interface WalletRepository extends JpaRepository<Wallet, UUID> {
+    Optional<Wallet> getWalletByWalletUuid(UUID walletId);
 }
