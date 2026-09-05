@@ -3,6 +3,7 @@ package pl.publicprojects.jreservation.infrastructure.rest.controllers;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.publicprojects.jreservation.application.services.ProductService;
 import pl.publicprojects.jreservation.infrastructure.repositories.ProductRepository;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
@@ -14,22 +15,18 @@ import java.time.ZoneId;
 @RequestMapping("/app")
 public class OffersController {
 
-    private final ProductRepository productRepository;
-    private final TimeManager timeManager;
+    private final ProductService productService;
 
     public OffersController(
-            ProductRepository productRepository,
-            TimeManager timeManager
-            ) {
-        this.productRepository = productRepository;
-        this.timeManager = timeManager;
+            ProductService productService
+    ) {
+        this.productService = productService;
     }
 
     @GetMapping("/offers/{page}")
     public ResponseEntity<?> offers(@PathVariable int page) {
         return ResponseEntity.ok(
-                this.productRepository.getAvailableProductsPage(
-                        LocalDateTime.ofInstant(this.timeManager.now(), ZoneId.systemDefault()),
+                this.productService.getAvailableProductsPage(
                         PageRequest.of(page, 10)
                 )
         );
