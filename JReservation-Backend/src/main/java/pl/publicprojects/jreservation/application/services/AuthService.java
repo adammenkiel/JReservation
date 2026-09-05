@@ -69,7 +69,7 @@ public class AuthService {
                 BigDecimal.ZERO,
                 "PLN"
         );
-        
+
         this.userRepository.save(user);
         this.walletRepository.save(wallet);
     }

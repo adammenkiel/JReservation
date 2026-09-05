@@ -1,16 +1,14 @@
-package pl.publicprojects.jreservation.domain.reservation;
+package pl.publicprojects.jreservation.domain.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -33,7 +31,7 @@ public class ProductInfo {
     String description;
 
     @NotNull
-    int cost;
+    Cost cost;
 
     @NotNull
     int amount;
@@ -51,7 +49,7 @@ public class ProductInfo {
             String name,
             String shortDescription,
             String description,
-            int cost,
+            Cost cost,
             int amount,
             LocalDateTime starts,
             LocalDateTime ends
@@ -71,7 +69,7 @@ public class ProductInfo {
             String name,
             String shortDescription,
             String description,
-            int cost,
+            Cost cost,
             int amount,
             LocalDateTime starts,
             LocalDateTime ends
@@ -88,7 +86,7 @@ public class ProductInfo {
 
     public boolean isAvailable() {
         LocalDateTime dateTime = LocalDateTime.now();
-        return starts.isAfter(dateTime) && ends.isBefore(dateTime);
+        return starts.isBefore(dateTime) && ends.isAfter(dateTime);
     }
 
 }

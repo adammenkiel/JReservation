@@ -38,7 +38,7 @@ public class User implements UserDetails {
     @NotBlank
     private String password;
 
-    @NotBlank
+    @NotNull
     private Date createdAccountTime;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
