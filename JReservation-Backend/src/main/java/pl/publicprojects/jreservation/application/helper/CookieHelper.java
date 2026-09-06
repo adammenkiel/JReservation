@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
 import pl.publicprojects.jreservation.domain.exception.exceptions.CookieException;
 
-import java.net.http.HttpRequest;
 import java.util.Arrays;
 import java.util.Optional;
 

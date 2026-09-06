@@ -6,11 +6,9 @@ import pl.publicprojects.jreservation.domain.exception.exceptions.ProductNotExis
 import pl.publicprojects.jreservation.domain.product.ProductInfo;
 import pl.publicprojects.jreservation.infrastructure.repositories.ProductRepository;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

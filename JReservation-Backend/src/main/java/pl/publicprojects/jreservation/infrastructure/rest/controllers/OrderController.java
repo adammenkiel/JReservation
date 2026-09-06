@@ -31,7 +31,7 @@ public class OrderController {
         this.cookieHelper = cookieHelper;
     }
 
-    @PostMapping
+    @PostMapping("/order")
     public ResponseEntity<?> orderProduct(
             HttpServletRequest request,
             @RequestBody OrderProductRequest orderProductRequest

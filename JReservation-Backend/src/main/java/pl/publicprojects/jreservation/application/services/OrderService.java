@@ -2,12 +2,10 @@ package pl.publicprojects.jreservation.application.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.publicprojects.jreservation.domain.exception.exceptions.ProductNotExistsException;
 import pl.publicprojects.jreservation.domain.payment.Wallet;
 import pl.publicprojects.jreservation.domain.product.Cost;
 import pl.publicprojects.jreservation.domain.product.ProductInfo;
 import pl.publicprojects.jreservation.domain.user.User;
-import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 
 import java.util.UUID;
 
