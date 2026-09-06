@@ -42,7 +42,8 @@ public class User implements UserDetails {
     private Date createdAccountTime;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Wallet> wallets = new ArrayList<>();
+    @MapKey(name = "currency")
+    private Map<String, Wallet> wallets = new HashMap<>();
 
     public User(String username, String email, String password, Date createdAccountTime) {
         this.uuid = UUID.nameUUIDFromBytes(username.getBytes(StandardCharsets.UTF_8));
@@ -58,7 +59,8 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.createdAccountTime = createdAccountTime;
-        this.wallets = wallets;
+        this.wallets = new HashMap<>();
+        wallets.forEach(wallet -> this.wallets.put(wallet.getCurrency(), wallet));
     }
 
     @Override

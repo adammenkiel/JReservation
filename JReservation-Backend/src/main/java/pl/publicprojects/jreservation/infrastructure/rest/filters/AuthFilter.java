@@ -76,6 +76,7 @@ public class AuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    //TODO: Maybe correct it
     @Override
     protected boolean shouldNotFilter(
             @NotNull HttpServletRequest request

@@ -23,8 +23,8 @@ public class AuthControllerTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-
     //TODO: Test isn't good because it's important to correct Arrange section
+    //TODO: User must exists before send request to /auth/login
     @Test
     public void loginTest() {
         //Arrange

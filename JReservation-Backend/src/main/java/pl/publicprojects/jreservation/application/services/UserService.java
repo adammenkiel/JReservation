@@ -6,15 +6,24 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.publicprojects.jreservation.domain.exception.exceptions.UserNotExistsException;
+import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
+import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
+
+import java.util.Date;
 
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final TimeManager timeManager;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(
+            UserRepository userRepository,
+            TimeManager timeManager
+    ) {
         this.userRepository = userRepository;
+        this.timeManager = timeManager;
     }
 
     @Transactional
@@ -26,5 +35,11 @@ public class UserService implements UserDetailsService {
                                 "User not exists, please register your account or correct username."
                         )
                 );
+    }
+
+    public void createUser(String username, String email, String password) {
+        userRepository.save(
+                new User(username, email, password, Date.from(this.timeManager.now()))
+        );
     }
 }
