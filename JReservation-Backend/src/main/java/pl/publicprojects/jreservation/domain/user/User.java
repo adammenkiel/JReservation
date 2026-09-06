@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.publicprojects.jreservation.domain.exception.exceptions.WalletNotFoundException;
 import pl.publicprojects.jreservation.domain.payment.Wallet;
 
 import java.nio.charset.StandardCharsets;
@@ -66,5 +67,12 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
+    }
+
+    public Wallet getWalletByCurrency(String currency) {
+        if(!this.wallets.containsKey(currency)) {
+            throw new WalletNotFoundException("You don't have wallet with currency: \"" + currency + "\"!");
+        }
+        return this.wallets.get(currency);
     }
 }

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
+import pl.publicprojects.jreservation.domain.product.Cost;
 import pl.publicprojects.jreservation.domain.user.User;
 
 import java.math.BigDecimal;
@@ -39,10 +40,11 @@ public class Wallet {
     public Wallet() {}
 
     public Wallet(User user, BigDecimal balance, String currency) {
-
         this.user = user;
         this.balance = balance;
         this.currency = currency;
-
+    }
+    public void deductFunds(Cost cost) {
+        this.balance = balance.subtract(cost.getCost());
     }
 }

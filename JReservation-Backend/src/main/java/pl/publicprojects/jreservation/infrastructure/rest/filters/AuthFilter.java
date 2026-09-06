@@ -12,27 +12,30 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import pl.publicprojects.jreservation.application.helper.CookieHelper;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.application.services.UserService;
+import pl.publicprojects.jreservation.domain.exception.AppException;
 import pl.publicprojects.jreservation.domain.user.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
 
 @Component
 public class AuthFilter extends OncePerRequestFilter {
 
     private final JwtHelper jwtHelper;
+    private final CookieHelper cookieHelper;
     private final UserService userService;
 
     public AuthFilter(
             JwtHelper jwtHelper,
-            UserService userService
+            UserService userService,
+            CookieHelper cookieHelper
     ) {
         this.jwtHelper = jwtHelper;
         this.userService = userService;
+        this.cookieHelper = cookieHelper;
     }
 
     //TODO: Consider move this logic or part of it into authService
@@ -42,22 +45,15 @@ public class AuthFilter extends OncePerRequestFilter {
             @NotNull HttpServletResponse response,
             @NotNull FilterChain filterChain
     ) throws ServletException, IOException, UsernameNotFoundException {
-        if(request.getCookies() == null) {
-            response.sendError(403, "Authentication is required!");
-            filterChain.doFilter(request, response);
-            return;
-        }
-        Optional<Cookie> optCookie = Arrays.stream(request.getCookies())
-                .filter(cookie -> cookie.getName().equals("token"))
-                .findFirst();
-
-        if(optCookie.isEmpty()) {
-            response.sendError(403, "Authentication is required!");
+        String tokenString;
+        try {
+            tokenString = this.cookieHelper.loadTokenCookieValue(request); // try/catch?
+        } catch (AppException e) {
+            response.sendError(e.getErrorCode(), e.getMessage());
             filterChain.doFilter(request, response);
             return;
         }
 
-        String tokenString = optCookie.get().getValue();
         if(!this.jwtHelper.isValid(tokenString)) {
             response.sendError(403, "Authentication token is incorrect!");
             filterChain.doFilter(request, response);

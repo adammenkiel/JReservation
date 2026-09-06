@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         return this.userRepository.getUserByUsername(username)
                 .orElseThrow(
                         () -> new UserNotExistsException(
@@ -41,5 +41,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(
                 new User(username, email, password, Date.from(this.timeManager.now()))
         );
+    }
+
+    public void saveUser(User user) {
+        this.userRepository.save(user);
     }
 }

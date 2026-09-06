@@ -6,12 +6,15 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.Setter;
+import pl.publicprojects.jreservation.domain.exception.exceptions.ProductOutOfStockException;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
+@Setter
 @Entity
 @Table(
         name = "products"
@@ -89,4 +92,8 @@ public class ProductInfo {
         return starts.isBefore(dateTime) && ends.isAfter(dateTime);
     }
 
+    public void reserve() {
+        if(this.amount <= 0) throw new ProductOutOfStockException("Product is currently out of stock!");
+        this.amount = this.amount - 1;
+    }
 }

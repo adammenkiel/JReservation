@@ -4,18 +4,20 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Embeddable
 public class Cost {
 
-    private int cost;
+    private BigDecimal cost;
 
     @NotBlank
     private String currency;
 
     protected Cost() {}
 
-    public Cost(int cost, String currency) {
+    public Cost(BigDecimal cost, String currency) {
         this.cost = cost;
         this.currency = currency;
     }
