@@ -8,38 +8,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.publicprojects.jreservation.application.helper.CookieHelper;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
-import pl.publicprojects.jreservation.application.services.OrderService;
+import pl.publicprojects.jreservation.application.services.ReservationService;
+import pl.publicprojects.jreservation.application.services.UserService;
 import pl.publicprojects.jreservation.infrastructure.rest.requests.OrderProductRequest;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping(name = "/app")
-public class OrderController {
+public class ReservationController {
 
-    private final OrderService orderService;
+    private final ReservationService orderService;
+    private final UserService userService;
     private final JwtHelper jwtHelper;
     private final CookieHelper cookieHelper;
 
-    public OrderController(
-            OrderService orderService,
+    public ReservationController(
+            ReservationService orderService,
+            UserService userService,
             JwtHelper jwtHelper,
             CookieHelper cookieHelper
     ) {
         this.orderService = orderService;
+        this.userService = userService;
         this.jwtHelper = jwtHelper;
         this.cookieHelper = cookieHelper;
     }
 
-    @PostMapping("/order")
-    public ResponseEntity<?> orderProduct(
+    @PostMapping("/reserve")
+    public ResponseEntity<?> reserveProduct(
             HttpServletRequest request,
             @RequestBody OrderProductRequest orderProductRequest
     ) {
         String tokenString = this.cookieHelper.loadTokenCookieValue(request);
         String username = this.jwtHelper.getTokenContent(tokenString);
-        UUID uuid = UUID.fromString(orderProductRequest.getUuidString());
-        this.orderService.orderProduct(username, uuid);
+        UUID productUuid = UUID.fromString(orderProductRequest.getUuidString());
+        this.orderService.reserveProduct(username, productUuid);
         return ResponseEntity.ok("OK");
     }
 }

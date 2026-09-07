@@ -1,7 +1,9 @@
 package pl.publicprojects.jreservation.infrastructure.repositories;
 
+import jakarta.persistence.LockModeType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,6 +18,11 @@ import java.util.UUID;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductInfo, UUID> {
     Optional<ProductInfo> getProductByProductId(UUID id);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT product FROM ProductInfo product WHERE product.productId = :UUID")
+    Optional<ProductInfo> getProductByProductIdWithLocking(@Param("UUID") UUID id);
+
     @Query("SELECT prod FROM ProductInfo prod WHERE " +
             "prod.starts < :dateNow AND prod.ends > :dateNow AND prod.amount > 0")
     List<ProductInfo> getAvailableProductsPage(
