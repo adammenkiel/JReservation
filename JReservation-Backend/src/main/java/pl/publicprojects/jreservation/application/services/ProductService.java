@@ -36,6 +36,11 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotExistsException("There is no product with this UUID!"));
     }
 
+    public ProductInfo getProductByUUIDWithLock(UUID uuid) {
+        return this.productRepository.getProductByProductIdWithLock(uuid)
+                .orElseThrow(() -> new ProductNotExistsException("There is no product with this UUID!"));
+    }
+
     public void saveProduct(ProductInfo product) {
         this.productRepository.save(product);
     }

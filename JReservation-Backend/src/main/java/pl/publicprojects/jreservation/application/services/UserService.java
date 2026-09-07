@@ -36,6 +36,15 @@ public class UserService implements UserDetailsService {
                 );
     }
 
+    public User loadUserByUsernameWithLock(String username) {
+        return this.userRepository.getUserByUsernameWithLock(username)
+                .orElseThrow(
+                        () -> new UserNotExistsException(
+                                "User not exists, please register your account or correct username."
+                        )
+                );
+    }
+
     public void createUser(String username, String email, String password) {
         userRepository.save(
                 new User(username, email, password, Date.from(this.timeManager.now()))

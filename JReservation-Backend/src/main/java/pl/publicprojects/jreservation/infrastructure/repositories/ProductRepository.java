@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<ProductInfo, UUID> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT product FROM ProductInfo product WHERE product.productId = :UUID")
-    Optional<ProductInfo> getProductByProductIdWithLocking(@Param("UUID") UUID id);
+    Optional<ProductInfo> getProductByProductIdWithLock(@Param("UUID") UUID id);
 
     @Query("SELECT prod FROM ProductInfo prod WHERE " +
             "prod.starts < :dateNow AND prod.ends > :dateNow AND prod.amount > 0")

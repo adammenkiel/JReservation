@@ -42,7 +42,7 @@ public class ReservationService {
     @Transactional
     public void reserveProduct(String nickname, UUID productId) {
         User user = (User) this.userService.loadUserByUsername(nickname);
-        ProductInfo product = this.productService.getProductByUUID(productId);
+        ProductInfo product = this.productService.getProductByUUIDWithLock(productId);
         product.reserve();
         this.saveReservation(user, product);
         this.productService.saveProduct(product);
