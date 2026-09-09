@@ -19,18 +19,15 @@ import java.util.UUID;
 public class ReservationController {
 
     private final ReservationService orderService;
-    private final UserService userService;
     private final JwtHelper jwtHelper;
     private final CookieHelper cookieHelper;
 
     public ReservationController(
             ReservationService orderService,
-            UserService userService,
             JwtHelper jwtHelper,
             CookieHelper cookieHelper
     ) {
         this.orderService = orderService;
-        this.userService = userService;
         this.jwtHelper = jwtHelper;
         this.cookieHelper = cookieHelper;
     }
@@ -43,6 +40,7 @@ public class ReservationController {
         String tokenString = this.cookieHelper.loadTokenCookieValue(request);
         String username = this.jwtHelper.getTokenContent(tokenString);
         UUID productUuid = UUID.fromString(orderProductRequest.getUuidString());
+
         this.orderService.reserveProduct(username, productUuid);
         return ResponseEntity.ok("OK");
     }

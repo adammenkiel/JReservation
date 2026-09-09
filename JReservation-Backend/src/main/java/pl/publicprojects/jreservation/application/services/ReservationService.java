@@ -42,7 +42,7 @@ public class ReservationService {
         }
         this.reservationRepository.save(new Reservation(user, product, this.timeManager.now()));
     }
-    
+
     @Transactional
     public void reserveProduct(String nickname, UUID productId) {
         User user = (User) this.userService.loadUserByUsername(nickname);
