@@ -9,6 +9,7 @@ import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.infrastructure.repositories.ReservationRepository;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,14 +32,17 @@ public class ReservationService {
         this.timeManager = timeManager;
     }
 
+    public Optional<Reservation> getReservation(User user, ProductInfo productInfo) {
+        return this.reservationRepository.getReservation(user, productInfo);
+    }
+
     private void saveReservation(User user, ProductInfo product) {
-        if(this.reservationRepository.getReservationByUser(user).isPresent()) {
+        if(this.getReservation(user, product).isPresent()) {
             throw new ReservationPendingException("You already reserved that product before and you're in payment process!");
         }
         this.reservationRepository.save(new Reservation(user, product, this.timeManager.now()));
     }
-
-    //TODO: Function should be support pessimistic locking!!!
+    
     @Transactional
     public void reserveProduct(String nickname, UUID productId) {
         User user = (User) this.userService.loadUserByUsername(nickname);

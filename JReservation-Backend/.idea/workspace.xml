@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/repositories/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/repositories/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/reservation/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/repositories/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/repositories/ReservationRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
