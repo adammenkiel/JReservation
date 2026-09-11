@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.publicprojects.jreservation.application.helper.CookieHelper;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.application.services.ReservationService;
-import pl.publicprojects.jreservation.application.services.UserService;
-import pl.publicprojects.jreservation.infrastructure.rest.requests.OrderProductRequest;
+import pl.publicprojects.jreservation.infrastructure.rest.requests.ProductRequest;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping(name = "/app")
+@RequestMapping("/app")
 public class ReservationController {
 
     private final ReservationService orderService;
@@ -35,7 +34,7 @@ public class ReservationController {
     @PostMapping("/reserve")
     public ResponseEntity<?> reserveProduct(
             HttpServletRequest request,
-            @RequestBody OrderProductRequest orderProductRequest
+            @RequestBody ProductRequest orderProductRequest
     ) {
         String tokenString = this.cookieHelper.loadTokenCookieValue(request);
         String username = this.jwtHelper.getTokenContent(tokenString);

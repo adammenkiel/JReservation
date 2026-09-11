@@ -1,5 +1,6 @@
 package pl.publicprojects.jreservation.application.services;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.publicprojects.jreservation.domain.exception.exceptions.ProductNotExistsException;
@@ -25,7 +26,7 @@ public class ProductService {
         this.timeManager = timeManager;
     }
 
-    public List<ProductInfo> getAvailableProductsPage(Pageable pageable) {
+    public Page<ProductInfo> getAvailableProductsPage(Pageable pageable) {
         return this.productRepository.getAvailableProductsPage(
                 LocalDateTime.ofInstant(this.timeManager.now(), ZoneId.systemDefault()),
                 pageable

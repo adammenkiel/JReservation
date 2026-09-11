@@ -13,4 +13,7 @@ public class ConfigProperties {
 
     @Value("${jwt.expiration.seconds}")
     private long jwtExpirationSeconds = 3600;
+
+    @Value("${dev.debug}")
+    private boolean devDebug = false;
 }

@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class OrderProductRequest {
-    String uuidString;
+public class ProductRequest {
+    String productUuid;
 }
