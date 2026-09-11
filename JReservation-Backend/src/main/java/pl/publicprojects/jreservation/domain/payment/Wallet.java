@@ -45,6 +45,8 @@ public class Wallet {
         this.currency = currency;
     }
     public void deductFunds(Cost cost) {
+        // TODO: check if balance - cost > 0
+        // TODO: check if currency is correct
         this.balance = balance.subtract(cost.getCost());
     }
 }

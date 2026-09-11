@@ -51,4 +51,8 @@ public class ReservationService {
         this.saveReservation(user, product);
         this.productService.saveProduct(product);
     }
+
+    public void removeReservation(Reservation reservation) {
+        this.reservationRepository.delete(reservation);
+    }
 }
