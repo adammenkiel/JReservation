@@ -40,4 +40,53 @@ public class AuthControllerTests {
         Assertions.assertNotNull(responseCookies);
         Assertions.assertFalse(responseCookies.isEmpty());
     }
+
+    /**
+     * Tests registering new user when username of user is very long
+     */
+    @Test
+    public void registerWithTooLongUsernameTest() {}
+
+    /**
+     * Tests registering new user when password is very long
+     */
+    @Test
+    public void registerWithTooLongPasswordTest() {}
+
+    /**
+     * Tests registering new user when mail have an incorrect format
+     */
+    @Test
+    public void registerWithIncorrectMailTest() {}
+
+    /**
+     * Tests registering new user when username is empty
+     */
+    @Test
+    public void registerWithEmptyUsernameTest() {}
+
+    /**
+     * Tests registering new user when mail is empty
+     */
+    @Test
+    public void registerWithEmptyMailTest() {}
+
+    /**
+     * Tests registering new user when password is empty
+     */
+    @Test
+    public void registerWithEmptyPasswordTest() {}
+
+    /**
+     * Tests registering new user when username is short
+     */
+    @Test
+    public void registerWithShortUsernameTest() {}
+
+    /**
+     * Tests registering new user when password is short
+     */
+    @Test
+    public void registerWithShortPasswordTest() {}
+
 }

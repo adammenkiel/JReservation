@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/domain/ProductInfoTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/domain/WalletTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/application/CookieHelperTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/domain/UserTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/ReservationControllerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/WalletControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
