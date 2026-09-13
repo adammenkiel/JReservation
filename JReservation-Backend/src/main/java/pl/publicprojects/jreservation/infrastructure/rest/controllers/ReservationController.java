@@ -17,16 +17,16 @@ import java.util.UUID;
 @RequestMapping("/app")
 public class ReservationController {
 
-    private final ReservationService orderService;
+    private final ReservationService reservationService;
     private final JwtHelper jwtHelper;
     private final CookieHelper cookieHelper;
 
     public ReservationController(
-            ReservationService orderService,
+            ReservationService reservationService,
             JwtHelper jwtHelper,
             CookieHelper cookieHelper
     ) {
-        this.orderService = orderService;
+        this.reservationService = reservationService;
         this.jwtHelper = jwtHelper;
         this.cookieHelper = cookieHelper;
     }
@@ -38,9 +38,9 @@ public class ReservationController {
     ) {
         String tokenString = this.cookieHelper.loadTokenCookieValue(request);
         String username = this.jwtHelper.getTokenContent(tokenString);
-        UUID productUuid = UUID.fromString(orderProductRequest.getUuidString());
+        UUID productUuid = UUID.fromString(orderProductRequest.getProductUuid());
 
-        this.orderService.reserveProduct(username, productUuid);
+        this.reservationService.reserveProduct(username, productUuid);
         return ResponseEntity.ok("OK");
     }
 }

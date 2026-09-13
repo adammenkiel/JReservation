@@ -89,4 +89,10 @@ public class AuthControllerTests {
     @Test
     public void registerWithShortPasswordTest() {}
 
+    /**
+     * Tests if incorrect symbols will be accepted
+     */
+    @Test
+    public void registerWithIncorrectSymbolsTest() {}
+
 }

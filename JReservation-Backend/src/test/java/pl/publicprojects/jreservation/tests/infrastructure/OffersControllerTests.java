@@ -32,4 +32,9 @@ public class OffersControllerTests {
         //Assert
         assertEquals(403, response.getStatusCode().value());
     }
+
+    @Test
+    public void loadMaximumExceedPage() {
+
+    }
 }
