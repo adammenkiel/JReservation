@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import pl.publicprojects.jreservation.domain.exception.exceptions.ProductOutOfStockException;
+import pl.publicprojects.jreservation.domain.exception.exceptions.ProductNotAvailableException;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
@@ -87,13 +87,12 @@ public class ProductInfo {
         this.ends = ends;
     }
 
-    public boolean isAvailable() {
-        LocalDateTime dateTime = LocalDateTime.now();
-        return starts.isBefore(dateTime) && ends.isAfter(dateTime);
+    public boolean isAvailable(LocalDateTime dateNow) {
+        return this.starts.isBefore(dateNow) && this.ends.isAfter(dateNow) && this.amount > 0;
     }
 
-    public void reserve() {
-        if(this.amount <= 0) throw new ProductOutOfStockException("Product is currently out of stock!");
+    public void reserve(LocalDateTime dateNow) {
+        if(!this.isAvailable(dateNow)) throw new ProductNotAvailableException("Product isn't available!");
         this.amount = this.amount - 1;
     }
 }

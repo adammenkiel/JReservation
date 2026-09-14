@@ -9,6 +9,8 @@ import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.infrastructure.repositories.ReservationRepository;
 import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,7 +49,7 @@ public class ReservationService {
     public void reserveProduct(String nickname, UUID productId) {
         User user = (User) this.userService.loadUserByUsername(nickname);
         ProductInfo product = this.productService.getProductByUUIDWithLock(productId);
-        product.reserve();
+        product.reserve(LocalDateTime.ofInstant(this.timeManager.now(), ZoneId.systemDefault()));
         this.saveReservation(user, product);
         this.productService.saveProduct(product);
     }
