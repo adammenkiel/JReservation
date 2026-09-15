@@ -42,6 +42,29 @@ public class AuthControllerTests {
     }
 
     /**
+     * Tries to log in to data that does not exist
+     */
+    @Test
+    public void loginUsernameNotExists() {}
+
+    @Test
+    public void loginEmailNotExists() {}
+    
+    @Test
+    public void loginWithIncorrectPassword() {}
+
+    /**
+     * Tries to register to someone's username (if username is already exists)
+     */
+    @Test
+    public void registerToExistUsernameData() {}
+
+    /**
+     * Tries to register to someone's email (if email is already exists)
+     */
+    @Test
+    public void registerToExistEmailData() {}
+    /**
      * Tests registering new user when username of user is very long
      */
     @Test
@@ -94,5 +117,7 @@ public class AuthControllerTests {
      */
     @Test
     public void registerWithIncorrectSymbolsTest() {}
+
+
 
 }
