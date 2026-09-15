@@ -87,7 +87,7 @@ public class ProductInfo {
         this.ends = ends;
     }
 
-    public boolean isAvailable(LocalDateTime dateNow) {
+    private boolean isAvailable(LocalDateTime dateNow) {
         return this.starts.isBefore(dateNow) && this.ends.isAfter(dateNow) && this.amount > 0;
     }
 

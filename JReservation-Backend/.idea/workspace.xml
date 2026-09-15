@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/helper/ProductFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/exception/exceptions/ProductOutOfStockException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/exception/exceptions/ProductNotAvailableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/product/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/product/ProductInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/domain/ProductInfoTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/domain/ProductInfoTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/WalletControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/WalletControllerTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +67,10 @@
     "Gradle.JwtHelperTests.incorrectTokenValidateTest (1).executor": "Run",
     "Gradle.JwtHelperTests.incorrectTokenValidateTest.executor": "Run",
     "Gradle.OffersControllerTests.accessWithoutLoginTest.executor": "Run",
+    "Gradle.ProductInfoTests.executor": "Run",
+    "Gradle.ProductInfoTests.isUnavailableByDateTest.executor": "Run",
     "Gradle.ProductInfoTests.productInfoReserveTest.executor": "Run",
+    "Gradle.ProductInfoTests.reserveTooMuchProductsTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -92,8 +89,8 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.ProductInfoTests.productInfoReserveTest">
-    <configuration name="AuthControllerTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.ProductInfoTests">
+    <configuration name="ProductInfoTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -106,7 +103,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests&quot;" />
+            <option value="&quot;pl.publicprojects.jreservation.tests.domain.ProductInfoTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -120,7 +117,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="AuthControllerTests.loginTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ProductInfoTests.isUnavailableByDateTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -133,34 +130,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests.loginTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="OffersControllerTests.accessWithoutLoginTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.OffersControllerTests.accessWithoutLoginTest&quot;" />
+            <option value="&quot;pl.publicprojects.jreservation.tests.domain.ProductInfoTests.isUnavailableByDateTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -201,6 +171,33 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="ProductInfoTests.reserveTooMuchProductsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.publicprojects.jreservation.tests.domain.ProductInfoTests.reserveTooMuchProductsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <configuration name="JReservation" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="JReservation-Backend.main" />
@@ -217,11 +214,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ProductInfoTests" />
+        <item itemvalue="Gradle.ProductInfoTests.isUnavailableByDateTest" />
+        <item itemvalue="Gradle.ProductInfoTests.reserveTooMuchProductsTest" />
         <item itemvalue="Gradle.ProductInfoTests.productInfoReserveTest" />
         <item itemvalue="Spring Boot.JReservation" />
-        <item itemvalue="Gradle.AuthControllerTests" />
-        <item itemvalue="Gradle.AuthControllerTests.loginTest" />
-        <item itemvalue="Gradle.OffersControllerTests.accessWithoutLoginTest" />
       </list>
     </recent_temporary>
   </component>
