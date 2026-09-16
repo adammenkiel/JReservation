@@ -69,7 +69,6 @@ public class AuthService {
                 BigDecimal.ZERO,
                 "PLN"
         );
-
         this.userRepository.save(user);
         this.walletRepository.save(wallet);
     }
@@ -85,7 +84,8 @@ public class AuthService {
         return this.jwtHelper.generateJwtCookieFromUser(user);
     }
 
-    public void deleteUser(User user) {
+
+    public void unregisterUser(User user) {
         this.userRepository.delete(user);
     }
 }

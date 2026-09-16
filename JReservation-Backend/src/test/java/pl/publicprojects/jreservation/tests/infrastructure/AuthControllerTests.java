@@ -7,12 +7,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.TestConstructor;
+import pl.publicprojects.jreservation.application.services.AuthService;
+import pl.publicprojects.jreservation.infrastructure.repositories.UserRepository;
 
 import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 public class AuthControllerTests {
     @LocalServerPort
     private int port;
@@ -20,15 +24,42 @@ public class AuthControllerTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    //TODO: Test isn't good because it's important to correct Arrange section
-    //TODO: User must exists before send request to /auth/login
+    private final AuthService authService;
+    private final UserRepository userRepository;
+
+    public AuthControllerTests(
+            AuthService authService,
+            UserRepository userRepository
+    ) {
+        this.authService = authService;
+        this.userRepository = userRepository;
+    }
+
+    private void unregisterByKeys(String username, String email) {
+        var byUsername = this.userRepository.getUserByUsername(username);
+        byUsername.ifPresent(this.authService::unregisterUser);
+        var byEmail = this.userRepository.getUserByEmail(email);
+        byEmail.ifPresent(this.authService::unregisterUser);
+    }
+
+    public void reregister(String username, String email, String password) {
+        try {
+            this.unregisterByKeys(username, email);
+            this.authService.registerUser(username, email, password);
+        } catch (Exception ignored) {}
+    }
+
     @Test
     public void loginTest() {
         //Arrange
-        var bodyMap = new HashMap<>();
-        bodyMap.put("username", "adammenkiel");
-        bodyMap.put("password", "haslo");
+        String username = "adammenkiel";
+        String email = "test@mail.com";
+        String password = "haslo";
+        this.reregister(username, email, password);
 
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("password", password);
         //Act
         List<String> responseCookies = this.restTemplate.postForEntity(
             "http://localhost:" + port + "/auth/login",
@@ -45,11 +76,28 @@ public class AuthControllerTests {
      * Tries to log in to data that does not exist
      */
     @Test
-    public void loginUsernameNotExists() {}
+    public void loginUserNotExists() {
+        //Arrange
+        String username = "lolek123";
+        String email = "test1234@mail.com";
+        String password = "haslo";
+        this.unregisterByKeys(username, email);
 
-    @Test
-    public void loginEmailNotExists() {}
-    
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("password", password);
+
+        //Act
+        int statusCode = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/login",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(401, statusCode);
+    }
+
     @Test
     public void loginWithIncorrectPassword() {}
 
