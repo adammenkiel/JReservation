@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.publicprojects.jreservation.domain.exception.exceptions.WrongPasswordException;
 import pl.publicprojects.jreservation.domain.payment.Wallet;
 import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
@@ -86,7 +85,7 @@ public class AuthService {
             User user = (User) authenticate.getPrincipal();
             return this.jwtHelper.generateJwtCookieFromUser(user);
         } catch (BadCredentialsException e) {
-            throw new WrongPasswordException(e);
+            throw new AuthException(e);
         }
     }
 

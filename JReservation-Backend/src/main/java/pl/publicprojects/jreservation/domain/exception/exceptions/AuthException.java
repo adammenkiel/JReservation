@@ -4,15 +4,15 @@ import pl.publicprojects.jreservation.domain.exception.AppException;
 
 public class AuthException extends AppException {
     public AuthException() {
-        super(403);
+        super(401);
     }
     public AuthException(String message) {
-        super(403, message);
+        super(401, message);
     }
     public AuthException(String message, Throwable err) {
-        super(403, message, err);
+        super(401, message, err);
     }
     public AuthException(Throwable err) {
-        super(403, err);
+        super(401, err);
     }
 }
