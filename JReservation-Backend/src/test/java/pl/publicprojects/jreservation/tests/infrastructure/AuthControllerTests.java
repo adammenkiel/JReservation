@@ -99,7 +99,28 @@ public class AuthControllerTests {
     }
 
     @Test
-    public void loginWithIncorrectPassword() {}
+    public void loginWithIncorrectPassword() {
+        //Arrange
+        String username = "lolek123";
+        String email = "test1234@mail.com";
+        String password = "haslo";
+        String wrongPassword = "wrong_password";
+        this.reregister(username, email, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("password", wrongPassword);
+
+        //Act
+        int statusCode = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/login",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(401, statusCode);
+    }
 
     /**
      * Tries to register to someone's username (if username is already exists)

@@ -2,11 +2,13 @@ package pl.publicprojects.jreservation.application.services;
 
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.publicprojects.jreservation.domain.exception.exceptions.WrongPasswordException;
 import pl.publicprojects.jreservation.domain.payment.Wallet;
 import pl.publicprojects.jreservation.domain.user.User;
 import pl.publicprojects.jreservation.domain.exception.exceptions.AuthException;
@@ -74,14 +76,18 @@ public class AuthService {
     }
 
     public ResponseCookie loginUser(String name, String password) {
-        Authentication authenticate = this.authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(name, password));
+        try {
+            Authentication authenticate = this.authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(name, password));
 
-        SecurityContextHolder.getContext()
-                .setAuthentication(authenticate);
+            SecurityContextHolder.getContext()
+                    .setAuthentication(authenticate);
 
-        User user = (User) authenticate.getPrincipal();
-        return this.jwtHelper.generateJwtCookieFromUser(user);
+            User user = (User) authenticate.getPrincipal();
+            return this.jwtHelper.generateJwtCookieFromUser(user);
+        } catch (BadCredentialsException e) {
+            throw new WrongPasswordException(e);
+        }
     }
 
 
