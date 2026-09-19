@@ -126,13 +126,59 @@ public class AuthControllerTests {
      * Tries to register to someone's username (if username is already exists)
      */
     @Test
-    public void registerToExistUsernameData() {}
+    public void registerToExistUsernameData() {
+        //Arrange
+        String username = "lolek123";
+        String email = "test1234@mail.com";
+        String password = "haslo";
+        String anotherEmail = "3kk4@gmail.com";
+        String anotherPassword = "haslo123";
+        this.reregister(username, email, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", anotherEmail);
+        bodyMap.put("password", anotherPassword);
+
+        //Act
+        int statusCode = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(401, statusCode);
+    }
 
     /**
      * Tries to register to someone's email (if email is already exists)
      */
     @Test
-    public void registerToExistEmailData() {}
+    public void registerToExistEmailData() {
+        //Arrange
+        String username = "lolek123";
+        String email = "test1234@mail.com";
+        String password = "haslo";
+        String anotherUsername = "lolek1234";
+        String anotherPassword = "haslo123";
+        this.reregister(username, email, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", anotherUsername);
+        bodyMap.put("email", email);
+        bodyMap.put("password", anotherPassword);
+
+        //Act
+        int statusCode = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(401, statusCode);
+    }
     /**
      * Tests registering new user when username of user is very long
      */
