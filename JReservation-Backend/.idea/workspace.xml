@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/user/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +67,7 @@
     "Gradle.AuthControllerTests.loginWithIncorrectPassword.executor": "Run",
     "Gradle.AuthControllerTests.registerToExistEmailData.executor": "Run",
     "Gradle.AuthControllerTests.registerToExistUsernameData.executor": "Run",
+    "Gradle.AuthControllerTests.registerWithTooLongUsernameTest.executor": "Run",
     "Gradle.Build JReservation-Backend.executor": "Run",
     "Gradle.JReservation-Backend [:pl.publicprojects.jreservation.JReservation.main()].executor": "Run",
     "Gradle.JwtHelperTests.expiredTokenValidateTest.executor": "Run",
@@ -94,7 +96,7 @@
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.AuthControllerTests.registerToExistEmailData">
+  <component name="RunManager" selected="Gradle.AuthControllerTests.registerWithTooLongUsernameTest">
     <configuration name="AuthControllerTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -109,33 +111,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AuthControllerTests.loginUsernameNotExists" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests.loginUsernameNotExists&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -230,13 +205,40 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="AuthControllerTests.registerWithTooLongUsernameTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests.registerWithTooLongUsernameTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AuthControllerTests.registerWithTooLongUsernameTest" />
         <item itemvalue="Gradle.AuthControllerTests.registerToExistEmailData" />
         <item itemvalue="Gradle.AuthControllerTests" />
         <item itemvalue="Gradle.AuthControllerTests.registerToExistUsernameData" />
         <item itemvalue="Gradle.AuthControllerTests.loginWithIncorrectPassword" />
-        <item itemvalue="Gradle.AuthControllerTests.loginUsernameNotExists" />
       </list>
     </recent_temporary>
   </component>

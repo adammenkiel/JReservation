@@ -183,56 +183,25 @@ public class AuthControllerTests {
      * Tests registering new user when username of user is very long
      */
     @Test
-    public void registerWithTooLongUsernameTest() {}
+    public void registerWithTooLongUsernameTest() {
+        //Arrange
+        String username = "gdjkgkjfldjglksdjlgjdlgkjdfsgggdfggfddfgdfgdgf";
+        String email = "test@mail.com";
+        String password = "haslo";
 
-    /**
-     * Tests registering new user when password is very long
-     */
-    @Test
-    public void registerWithTooLongPasswordTest() {}
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
 
-    /**
-     * Tests registering new user when mail have an incorrect format
-     */
-    @Test
-    public void registerWithIncorrectMailTest() {}
+        //Assert
+        Assertions.assertEquals(401, value);
 
-    /**
-     * Tests registering new user when username is empty
-     */
-    @Test
-    public void registerWithEmptyUsernameTest() {}
-
-    /**
-     * Tests registering new user when mail is empty
-     */
-    @Test
-    public void registerWithEmptyMailTest() {}
-
-    /**
-     * Tests registering new user when password is empty
-     */
-    @Test
-    public void registerWithEmptyPasswordTest() {}
-
-    /**
-     * Tests registering new user when username is short
-     */
-    @Test
-    public void registerWithShortUsernameTest() {}
-
-    /**
-     * Tests registering new user when password is short
-     */
-    @Test
-    public void registerWithShortPasswordTest() {}
-
-    /**
-     * Tests if incorrect symbols will be accepted
-     */
-    @Test
-    public void registerWithIncorrectSymbolsTest() {}
-
-
-
+    }
 }
