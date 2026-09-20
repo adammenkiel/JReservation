@@ -1,6 +1,7 @@
 package pl.publicprojects.jreservation.infrastructure.rest.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,7 @@ public class ReservationController {
     @PostMapping("/reserve")
     public ResponseEntity<?> reserveProduct(
             HttpServletRequest request,
-            @RequestBody ProductRequest orderProductRequest
+            @Valid @RequestBody ProductRequest orderProductRequest
     ) {
         String tokenString = this.cookieHelper.loadTokenCookieValue(request);
         String username = this.jwtHelper.getTokenContent(tokenString);

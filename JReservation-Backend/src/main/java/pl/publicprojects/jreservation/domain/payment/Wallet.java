@@ -45,8 +45,13 @@ public class Wallet {
         this.currency = currency;
     }
     public void deductFunds(Cost cost) {
-        // TODO: check if balance - cost > 0
-        // TODO: check if currency is correct
+        var after = this.balance.subtract(cost.getCost());
+        if(after.compareTo(BigDecimal.ZERO) < 0) {
+            throw new RuntimeException(); // TODO: Correct
+        }
+        if(!this.currency.equals(cost.getCurrency())) {
+            throw new RuntimeException();
+        }
         this.balance = balance.subtract(cost.getCost());
     }
 }

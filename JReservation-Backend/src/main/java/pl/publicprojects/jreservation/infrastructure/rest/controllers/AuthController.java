@@ -1,6 +1,7 @@
 package pl.publicprojects.jreservation.infrastructure.rest.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginUserRequest request) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginUserRequest request) {
         ResponseCookie tokenCookie = this.authService.loginUser(
                 request.getUsername(),
                 request.getPassword()
@@ -42,7 +43,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterUserRequest request) {
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterUserRequest request) {
         this.authService.registerUser(
                 request.getUsername(),
                 request.getEmail(),
