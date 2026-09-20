@@ -17,7 +17,7 @@ public class ExpireScheduler {
         this.reservationService = reservationService;
     }
 
-    @Scheduled
+    @Scheduled(fixedRate = 60_000)
     public void removeExpiredReservationScheduler() {
         this.reservationService.validateExpiredReservations();
     }

@@ -59,6 +59,7 @@ public class ReservationService {
         this.reservationRepository.delete(reservation);
     }
 
+    @Transactional
     public void validateExpiredReservations() {
         this.reservationRepository.deleteExpiredTransactions(
                 LocalDateTime.ofInstant(this.timeManager.now(), ZoneId.systemDefault())
