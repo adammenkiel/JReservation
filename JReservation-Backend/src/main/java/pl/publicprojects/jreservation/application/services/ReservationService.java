@@ -11,6 +11,7 @@ import pl.publicprojects.jreservation.infrastructure.time.TimeManager;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -56,5 +57,11 @@ public class ReservationService {
 
     public void removeReservation(Reservation reservation) {
         this.reservationRepository.delete(reservation);
+    }
+
+    public void validateExpiredReservations() {
+        this.reservationRepository.deleteExpiredTransactions(
+                LocalDateTime.ofInstant(this.timeManager.now(), ZoneId.systemDefault())
+        );
     }
 }

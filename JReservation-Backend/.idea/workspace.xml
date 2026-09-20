@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/configuration/SchedulerConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/scheduler/ExpireScheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/application/services/ReservationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/domain/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/repositories/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/repositories/ReservationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/LoginUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/LoginUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/ProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/RegisterUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/RegisterUserRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,12 +99,17 @@
     "last_opened_file_path": "C:/Users/akmen/Documents/GitHub/JReservation/JReservation-Backend",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/akmen/Documents/GitHub/JReservation/JReservation-Backend/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.2"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.AuthControllerTests.registerWithTooLongUsernameTest">
+  <component name="RunManager" selected="Spring Boot.JReservation">
     <configuration name="AuthControllerTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -111,33 +124,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AuthControllerTests.loginWithIncorrectPassword" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests.loginWithIncorrectPassword&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -232,13 +218,27 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="JReservation" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="JReservation-Backend.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pl.publicprojects.jreservation.JReservation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.publicprojects.jreservation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.JReservation" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithTooLongUsernameTest" />
         <item itemvalue="Gradle.AuthControllerTests.registerToExistEmailData" />
         <item itemvalue="Gradle.AuthControllerTests" />
         <item itemvalue="Gradle.AuthControllerTests.registerToExistUsernameData" />
-        <item itemvalue="Gradle.AuthControllerTests.loginWithIncorrectPassword" />
       </list>
     </recent_temporary>
   </component>

@@ -47,16 +47,12 @@ public class User implements UserDetails {
     @MapKey(name = "currency")
     private Map<String, Wallet> wallets = new HashMap<>();
 
-    private static final Pattern STR_PATTERN = Pattern.compile("^[A-Za-z0-9]{3,16}$");
-    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
-
     public User(String username, String email, String password, Date createdAccountTime) {
         this.uuid = UUID.nameUUIDFromBytes(username.getBytes(StandardCharsets.UTF_8));
         this.username = username;
         this.email = email;
         this.password = password;
         this.createdAccountTime = createdAccountTime;
-        this.validate(username, email, password);
     }
 
     public User(String username, String email, String password, Date createdAccountTime, List<Wallet> wallets) {
@@ -67,31 +63,6 @@ public class User implements UserDetails {
         this.createdAccountTime = createdAccountTime;
         this.wallets = new HashMap<>();
         wallets.forEach(wallet -> this.wallets.put(wallet.getCurrency(), wallet));
-        this.validate(username, email, password);
-    }
-
-    private void validateString(String text) {
-        if(!STR_PATTERN.matcher(text).matches()) {
-            throw new RuntimeException();
-        }
-    }
-
-    private void validateEmail(String text) {
-        if(!EMAIL_PATTERN.matcher(text).matches()) {
-            throw new RuntimeException();
-        }
-    }
-
-    private void validatePassword(String password) {
-        if(password.length() < 6) {
-            throw new RuntimeException();
-        }
-    }
-
-    private void validate(String username, String email, String password) {
-        this.validateString(username);
-        this.validateEmail(email);
-        this.validatePassword(password);
     }
 
     @Override
