@@ -36,6 +36,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
     void deleteExpiredTransactions(@Param("time") LocalDateTime localDateTime);
 
     @Modifying
-    @Query("DELETE FROM Reservation res WHERE res.uuid = uuid")
+    @Query("DELETE FROM Reservation res WHERE res.uuid = :uuid")
     int deleteReservation(@Param("uuid") UUID uuid);
 }
