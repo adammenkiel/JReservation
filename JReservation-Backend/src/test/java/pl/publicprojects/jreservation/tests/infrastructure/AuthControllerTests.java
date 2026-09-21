@@ -188,7 +188,7 @@ public class AuthControllerTests {
         String email = "test@mail.com";
         String password = "haslo12345";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -215,7 +215,7 @@ public class AuthControllerTests {
         String email = "test3123@mail.com";
         String password = "haslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslo";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -242,7 +242,7 @@ public class AuthControllerTests {
         String email = "test3123@mail,com";
         String password = "haslo12345";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -269,7 +269,7 @@ public class AuthControllerTests {
         String email = "test3123@mail.com";
         String password = "haslo12345";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("email", email);
@@ -295,7 +295,7 @@ public class AuthControllerTests {
         String email = "test3123@mail.com";
         String password = "haslo12345";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -321,7 +321,7 @@ public class AuthControllerTests {
         String email = "test3123@mail.com";
         String password = "haslo12345";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -347,7 +347,7 @@ public class AuthControllerTests {
         String email = "test3123@mail.com";
         String password = "haslo12345";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -374,7 +374,7 @@ public class AuthControllerTests {
         String email = "test3123@mail.com";
         String password = "haslo";
 
-        this.unregisterByKeys(username, password);
+        this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);

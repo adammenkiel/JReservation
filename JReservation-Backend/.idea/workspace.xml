@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/exception/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.AuthControllerTests.registerWithShortPasswordTest">
+  <component name="RunManager" selected="Gradle.AuthControllerTests">
     <configuration name="AuthControllerTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -246,11 +245,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AuthControllerTests" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithShortPasswordTest" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithShortUsernameTest" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithEmptyPasswordTest" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithEmptyMailTest" />
-        <item itemvalue="Gradle.AuthControllerTests" />
       </list>
     </recent_temporary>
   </component>
