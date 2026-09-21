@@ -63,4 +63,8 @@ public class Reservation {
         this.productInfo = productInfo;
         this.reservationStartTime = LocalDateTime.ofInstant(instantReservationStartTime, ZoneId.systemDefault());
     }
+
+    public boolean isExpired(LocalDateTime time) {
+        return this.reservationStartTime.plusMinutes(5).isBefore(time);
+    }
 }

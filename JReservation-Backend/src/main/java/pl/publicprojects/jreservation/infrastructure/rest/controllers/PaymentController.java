@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.publicprojects.jreservation.application.helper.CookieHelper;
 import pl.publicprojects.jreservation.application.helper.JwtHelper;
 import pl.publicprojects.jreservation.application.services.PaymentService;
-import pl.publicprojects.jreservation.infrastructure.rest.requests.PaymentRequest;
+import pl.publicprojects.jreservation.infrastructure.rest.requests.ProductRequest;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/app")
@@ -33,12 +35,12 @@ public class PaymentController {
     @PostMapping("/pay")
     public ResponseEntity<?> payForProduct(
             HttpServletRequest request,
-            @Valid @RequestBody PaymentRequest paymentRequest
+            @Valid @RequestBody ProductRequest paymentRequest
             ) {
         String token = this.cookieHelper.loadTokenCookieValue(request);
         String username = this.jwtHelper.getTokenContent(token);
 
-        this.paymentService.buyProduct(username, paymentRequest.getProductUUID());
+        this.paymentService.buyProduct(username, UUID.fromString(paymentRequest.getProductUuid()));
         return ResponseEntity.ok("OK!");
     }
 }
