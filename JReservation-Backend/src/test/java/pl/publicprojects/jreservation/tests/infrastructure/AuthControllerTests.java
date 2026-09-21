@@ -2,7 +2,6 @@ package pl.publicprojects.jreservation.tests.infrastructure;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -21,16 +20,16 @@ public class AuthControllerTests {
     @LocalServerPort
     private int port;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
-
+    private final TestRestTemplate restTemplate;
     private final AuthService authService;
     private final UserRepository userRepository;
 
     public AuthControllerTests(
+            TestRestTemplate restTemplate,
             AuthService authService,
             UserRepository userRepository
     ) {
+        this.restTemplate = restTemplate;
         this.authService = authService;
         this.userRepository = userRepository;
     }
@@ -54,7 +53,7 @@ public class AuthControllerTests {
         //Arrange
         String username = "adammenkiel";
         String email = "test@mail.com";
-        String password = "haslo";
+        String password = "haslo123";
         this.reregister(username, email, password);
 
         var bodyMap = new HashMap<>();
@@ -80,7 +79,7 @@ public class AuthControllerTests {
         //Arrange
         String username = "lolek123";
         String email = "test1234@mail.com";
-        String password = "haslo";
+        String password = "haslo123";
         this.unregisterByKeys(username, email);
 
         var bodyMap = new HashMap<>();
@@ -103,7 +102,7 @@ public class AuthControllerTests {
         //Arrange
         String username = "lolek123";
         String email = "test1234@mail.com";
-        String password = "haslo";
+        String password = "haslo123";
         String wrongPassword = "wrong_password";
         this.reregister(username, email, password);
 
@@ -130,7 +129,7 @@ public class AuthControllerTests {
         //Arrange
         String username = "lolek123";
         String email = "test1234@mail.com";
-        String password = "haslo";
+        String password = "haslo1234";
         String anotherEmail = "3kk4@gmail.com";
         String anotherPassword = "haslo123";
         this.reregister(username, email, password);
@@ -159,7 +158,7 @@ public class AuthControllerTests {
         //Arrange
         String username = "lolek123";
         String email = "test1234@mail.com";
-        String password = "haslo";
+        String password = "haslo12345";
         String anotherUsername = "lolek1234";
         String anotherPassword = "haslo123";
         this.reregister(username, email, password);
@@ -187,7 +186,9 @@ public class AuthControllerTests {
         //Arrange
         String username = "gdjkgkjfldjglksdjlgjdlgkjdfsgggdfggfddfgdfgdgf";
         String email = "test@mail.com";
-        String password = "haslo";
+        String password = "haslo12345";
+
+        this.unregisterByKeys(username, password);
 
         var bodyMap = new HashMap<>();
         bodyMap.put("username", username);
@@ -201,7 +202,198 @@ public class AuthControllerTests {
         ).getStatusCode().value();
 
         //Assert
-        Assertions.assertEquals(401, value);
-
+        Assertions.assertEquals(400, value);
     }
+
+    /**
+     * Tests registering new user when password is very long
+     */
+    @Test
+    public void registerWithTooLongPasswordTest() {
+        //Arrange
+        String username = "tester2";
+        String email = "test3123@mail.com";
+        String password = "haslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslohaslo";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests registering new user when mail have an incorrect format
+     */
+    @Test
+    public void registerWithIncorrectMailTest() {
+        //Arrange
+        String username = "tester2";
+        String email = "test3123@mail,com";
+        String password = "haslo12345";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests registering new user when username is empty
+     */
+    @Test
+    public void registerWithEmptyUsernameTest() {
+        //Arrange
+        String username = "tester2";
+        String email = "test3123@mail.com";
+        String password = "haslo12345";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests registering new user when mail is empty
+     */
+    @Test
+    public void registerWithEmptyMailTest() {
+        //Arrange
+        String username = "tester2";
+        String email = "test3123@mail.com";
+        String password = "haslo12345";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests registering new user when password is empty
+     */
+    @Test
+    public void registerWithEmptyPasswordTest() {
+        //Arrange
+        String username = "tester2";
+        String email = "test3123@mail.com";
+        String password = "haslo12345";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests registering new user when username is short
+     */
+    @Test
+    public void registerWithShortUsernameTest() {
+        //Arrange
+        String username = "t";
+        String email = "test3123@mail.com";
+        String password = "haslo12345";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests registering new user when password is short
+     */
+    @Test
+    public void registerWithShortPasswordTest() {
+        //Arrange
+        String username = "trsfd";
+        String email = "test3123@mail.com";
+        String password = "haslo";
+
+        this.unregisterByKeys(username, password);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
+
+    /**
+     * Tests if incorrect symbols will be accepted
+     */
+    @Test
+    public void registerWithIncorrectSymbolsTest() {}
 }
