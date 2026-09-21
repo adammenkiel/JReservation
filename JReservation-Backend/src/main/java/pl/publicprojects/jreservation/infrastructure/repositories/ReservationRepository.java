@@ -34,4 +34,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
         UPDATE products prod SET amount = prod.amount + amo.cnt FROM amo WHERE prod.product_id = amo.product_id
         """, nativeQuery = true)
     void deleteExpiredTransactions(@Param("time") LocalDateTime localDateTime);
+
+    @Modifying
+    @Query("DELETE FROM Reservation res WHERE r.uuid = uuid")
+    int deleteReservation(@Param("uuid") UUID uuid);
 }

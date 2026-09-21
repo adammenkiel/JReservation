@@ -2,6 +2,7 @@ package pl.publicprojects.jreservation.application.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.publicprojects.jreservation.domain.exception.exceptions.ReservationNotExistsException;
 import pl.publicprojects.jreservation.domain.exception.exceptions.ReservationPendingException;
 import pl.publicprojects.jreservation.domain.product.ProductInfo;
 import pl.publicprojects.jreservation.domain.reservation.Reservation;
@@ -56,7 +57,9 @@ public class ReservationService {
     }
 
     public void removeReservation(Reservation reservation) {
-        this.reservationRepository.delete(reservation);
+        if(this.reservationRepository.deleteReservation(reservation.getUuid()) == 0) {
+            throw new ReservationNotExistsException("Reservation not exists!");
+        }
     }
 
     @Transactional
