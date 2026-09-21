@@ -2,6 +2,7 @@ package pl.publicprojects.jreservation.application.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.publicprojects.jreservation.domain.exception.exceptions.ReservationNotExistsException;
 import pl.publicprojects.jreservation.domain.payment.Wallet;
 import pl.publicprojects.jreservation.domain.product.ProductInfo;
 import pl.publicprojects.jreservation.domain.reservation.Reservation;
@@ -35,7 +36,7 @@ public class PaymentService {
         ProductInfo productInfo = this.productService.getProductByUUID(productUuid);
 
         Reservation reservation = this.reservationService.getReservation(user, productInfo)
-                .orElseThrow(); //TODO: correct - specific exception should be thrown
+                .orElseThrow(() -> new ReservationNotExistsException("This reservation is expired or invalid!"));
 
         Wallet wallet = this.walletService.getUserWalletWithLock(user, productInfo.getCost().getCurrency());
         wallet.deductFunds(productInfo.getCost());

@@ -1,5 +1,6 @@
 package pl.publicprojects.jreservation.domain.payment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +29,7 @@ public class Wallet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @NotNull
+    @JsonIgnore
     User user;
 
     @Column(precision = 19, scale=2, nullable = false)
