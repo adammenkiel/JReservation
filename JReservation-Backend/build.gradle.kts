@@ -48,6 +48,14 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
 }
 
+springBoot {
+    mainClass.set("pl.publicprojects.jreservation.JReservation")
+}
+
+tasks.bootJar {
+    archiveFileName.set("JReservation-bootBuild-1.0.0.jar")
+}
+
 tasks.test {
     useJUnitPlatform()
 }
