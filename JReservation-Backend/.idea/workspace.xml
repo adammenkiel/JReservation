@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c111af43-fe16-4271-8cda-f432dfcdfd07" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/RegisterUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/publicprojects/jreservation/infrastructure/rest/requests/RegisterUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/AuthControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/WalletControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/publicprojects/jreservation/tests/infrastructure/WalletControllerTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +72,7 @@
     "Gradle.AuthControllerTests.registerWithEmptyPasswordTest.executor": "Run",
     "Gradle.AuthControllerTests.registerWithEmptyUsernameTest.executor": "Run",
     "Gradle.AuthControllerTests.registerWithIncorrectMailTest.executor": "Run",
+    "Gradle.AuthControllerTests.registerWithIncorrectSymbolsTest.executor": "Run",
     "Gradle.AuthControllerTests.registerWithShortPasswordTest.executor": "Run",
     "Gradle.AuthControllerTests.registerWithShortUsernameTest.executor": "Run",
     "Gradle.AuthControllerTests.registerWithTooLongPasswordTest.executor": "Run",
@@ -108,7 +111,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.JReservation">
+  <component name="RunManager" selected="Gradle.AuthControllerTests.registerWithIncorrectSymbolsTest">
     <configuration name="AuthControllerTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -136,7 +139,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="AuthControllerTests.registerWithEmptyPasswordTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuthControllerTests.registerWithIncorrectSymbolsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -149,7 +152,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests.registerWithEmptyPasswordTest&quot;" />
+            <option value="&quot;pl.publicprojects.jreservation.tests.infrastructure.AuthControllerTests.registerWithIncorrectSymbolsTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -233,11 +236,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AuthControllerTests.registerWithIncorrectSymbolsTest" />
         <item itemvalue="Spring Boot.JReservation" />
         <item itemvalue="Gradle.AuthControllerTests" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithShortPasswordTest" />
         <item itemvalue="Gradle.AuthControllerTests.registerWithShortUsernameTest" />
-        <item itemvalue="Gradle.AuthControllerTests.registerWithEmptyPasswordTest" />
       </list>
     </recent_temporary>
   </component>

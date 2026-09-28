@@ -395,5 +395,26 @@ public class AuthControllerTests {
      * Tests if incorrect symbols will be accepted
      */
     @Test
-    public void registerWithIncorrectSymbolsTest() {}
+    public void registerWithIncorrectSymbolsTest() {
+        //Arrange
+        String username = "tr#$@@#@$@sfd";
+        String email = "test3123@mail.com";
+        String password = "haslo1234";
+
+        this.unregisterByKeys(username, email);
+
+        var bodyMap = new HashMap<>();
+        bodyMap.put("username", username);
+        bodyMap.put("email", email);
+        bodyMap.put("password", password);
+        //Act
+        int value = this.restTemplate.postForEntity(
+                "http://localhost:" + port + "/auth/register",
+                bodyMap,
+                String.class
+        ).getStatusCode().value();
+
+        //Assert
+        Assertions.assertEquals(400, value);
+    }
 }
