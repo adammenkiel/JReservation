@@ -8,11 +8,35 @@ Full-stack ticket reservation system with Spring-Boot backend that uses hexagona
 
 # RestAPI documentation
 ## POST /auth/login
+Description: Endpoint for user authentication, user get access to send responses in /app endpoints.
+Body requires:
+Returns:
+Example:
 ## POST /auth/register
+Description: Endpoint for user registeration, if format authentication rules is respected and user with that data isn't already registered, creates a new account with input data.
+Body requires:
+Returns:
+Example:
 ## GET /app/offers/[page]
+Description: Checks pages of offers, starts with page 0.
+Body requires:
+Returns:
+Example:
 ## POST /app/pay
+Description: Endpoint for pay for specific product was already reserved.
+Body requires:
+Returns:
+Example:
 ## POST /app/reserve
+Description: Endpoint for reserve specific product. Succesful reservation makes amount of tickets dicreases by one. User have fixed time to pay for that reservation. If reservation isn't paid, tickets amount increases by one again.
+Body requires:
+Returns:
+Example:
 ## GET /app/balance
+Description: Checks wallets of user.
+Body requires:
+Returns:
+Example:
 
 # Build and run
 
